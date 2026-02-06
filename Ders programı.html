@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Akademik Program S23 Plus</title>
+<style>
+    :root {
+        --bg: #000000;
+        --card: #121212;
+        --border: #222222;
+        --accent: #ffffff;
+        --secondary: #a0a0a0;
+        --highlight: #1a1a1a;
+        --break-text: #555555;
+        --verified-blue: #0095f6;
+        --today-green: #2ecc71;
+        --past-red: #e74c3c;
+    }
+    body { 
+        font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: var(--bg); color: var(--accent);
+        margin: 0; padding: 10px; display: flex; flex-direction: column; align-items: center;
+        min-height: 100vh;
+    }
+    .container { width: 100%; max-width: 400px; box-sizing: border-box; padding-bottom: 80px; }
+    header { padding: 25px 0; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
+    h1 { font-size: 0.9rem; font-weight: 300; letter-spacing: 5px; margin: 0; text-transform: uppercase; text-align: center; }
+    
+    .day-block { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 15px; overflow: hidden; }
+    .day-header { 
+        background: var(--highlight); padding: 12px 15px; font-size: 0.75rem; font-weight: 700; 
+        letter-spacing: 1px; border-bottom: 1px solid var(--border); color: var(--accent);
+        display: flex; align-items: center;
+    }
+    
+    .day-icon { width: 20px; height: 20px; margin-right: 10px; display: flex; align-items: center; justify-content: center; }
+    .day-icon svg { animation: ring 4s ease-in-out infinite; stroke: white; }
+    
+    .active-day .day-header { color: var(--today-green) !important; }
+    .active-day .day-icon svg { stroke: var(--today-green) !important; }
+    .time-now { color: var(--today-green) !important; font-weight: bold; }
+    .time-past { color: var(--past-red) !important; text-decoration: line-through; }
+
+    @keyframes ring {
+        0%, 25%, 100% { transform: rotate(0); }
+        5% { transform: rotate(15deg); }
+        10% { transform: rotate(-15deg); }
+    }
+
+    .session { padding: 12px 15px; }
+    .break { padding: 5px 15px; background: #080808; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; font-size: 0.65rem; color: var(--break-text); text-transform: uppercase; letter-spacing: 1px; }
+    .time { font-size: 0.7rem; color: var(--secondary); font-family: monospace; display: block; margin-bottom: 2px; }
+    .name { font-size: 0.85rem; font-weight: 400; color: #e0e0e0; }
+    .room { color: var(--secondary); font-size: 0.8rem; margin-left: 4px; }
+    .main-gap { height: 10px; background: var(--bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+    /* İMZA ALANI VE YAVAŞLATILMIŞ PARLAMA */
+    .footer-signature {
+        position: fixed; bottom: 15px; right: 15px; display: flex; align-items: center; gap: 4px;
+        background: rgba(18, 18, 18, 0.9); padding: 8px 14px; border-radius: 50px;
+        border: 1px solid var(--border); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 999;
+    }
+
+    .shimmer-box {
+        display: flex; align-items: center; gap: 6px;
+        background: linear-gradient(-90deg, 
+            #ffffff 0%, 
+            #ffffff 35%, 
+            #ffd700 50%, 
+            #ffffff 65%, 
+            #ffffff 100%);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+        /* HIZ 7 SANIYEYE ÇIKARILDI (DAHA YAVAŞ) */
+        animation: reverseShimmer 7s linear infinite;
+    }
+
+    .shimmer-box svg {
+        fill: white;
+        display: block;
+    }
+
+    @keyframes reverseShimmer {
+        0% { background-position: 200% center; }
+        100% { background-position: -200% center; }
+    }
+
+    .sig-label { font-size: 0.6rem; font-weight: 400; }
+    .sig-name { font-size: 0.7rem; font-weight: 600; }
+    
+    .v-icon { 
+        fill: var(--verified-blue) !important; 
+        -webkit-text-fill-color: var(--verified-blue);
+        width: 12px; height: 12px;
+    }
+
+    footer { text-align: center; font-size: 0.6rem; color: #333; padding: 30px; letter-spacing: 1px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <header><h1>AKADEMİK PROGRAM</h1></header>
+
+    <div class="day-block" id="day-1">
+        <div class="day-header"><div class="day-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>PAZARTESİ</div>
+        <div class="session" data-start="17:00" data-end="17:45"><span class="time">17:00 - 17:45</span><span class="name">Türk Düşünce Tarihi <span class="room">(304/B)</span></span></div>
+        <div class="break">15 DK ARA</div>
+        <div class="session" data-start="18:00" data-end="18:45"><span class="time">18:00 - 18:45</span><span class="name">Türk Düşünce Tarihi <span class="room">(304/B)</span></span></div>
+    </div>
+
+    <div class="day-block" id="day-2">
+        <div class="day-header"><div class="day-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>SALI</div>
+        <div class="session" data-start="17:00" data-end="17:45"><span class="time">17:00 - 17:45</span><span class="name">Tasavvuf Metinleri <span class="room">(301/A)</span></span></div>
+        <div class="break">15 DK ARA</div>
+        <div class="session" data-start="18:00" data-end="18:45"><span class="time">18:00 - 18:45</span><span class="name">Tasavvuf Metinleri <span class="room">(301/A)</span></span></div>
+        <div class="main-gap"></div>
+        <div class="session" data-start="19:00" data-end="19:45"><span class="time">19:00 - 19:45</span><span class="name">Tasavvuf II <span class="room">(301/A)</span></span></div>
+        <div class="break">15 DK ARA</div>
+        <div class="session" data-start="20:00" data-end="20:45"><span class="time">20:00 - 20:45</span><span class="name">Tasavvuf II <span class="room">(301/A)</span></span></div>
+    </div>
+
+    <div class="day-block" id="day-3">
+        <div class="day-header"><div class="day-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>ÇARŞAMBA</div>
+        <div class="session" data-start="19:00" data-end="19:45"><span class="time">19:00 - 19:45</span><span class="name">Osmanlı Türkçesi <span class="room">(301/A)</span></span></div>
+        <div class="break">15 DK ARA</div>
+        <div class="session" data-start="20:00" data-end="20:45"><span class="time">20:00 - 20:45</span><span class="name">Osmanlı Türkçesi <span class="room">(301/A)</span></span></div>
+        <div class="main-gap"></div>
+        <div class="session" data-start="21:00" data-end="21:45"><span class="time">21:00 - 21:45</span><span class="name">Sistematik Kelam <span class="room">(301/A)</span></span></div>
+        <div class="break">15 DK ARA</div>
+        <div class="session" data-start="22:00" data-end="22:45"><span class="time">22:00 - 22:45</span><span class="name">Sistematik Kelam <span class="room">(301/A)</span></span></div>
+    </div>
+
+    <div class="day-block" id="day-4">
+        <div class="day-header"><div class="day-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>PERŞEMBE</div>
+        <div class="session" data-start="17:00" data-end="17:45"><span class="time">17:00 - 17:45</span><span class="name">Mantık Yanlışları <span class="room">(301/A)</span></span></div>
+        <div class="break">15 DK ARA</div>
+        <div class="session" data-start="18:00" data-end="18:45"><span class="time">18:00 - 18:45</span><span class="name">Mantık Yanlışları <span class="room">(301/A)</span></span></div>
+        <div class="main-gap"></div>
+        <div class="session" data-start="19:00" data-end="19:45"><span class="time">19:00 - 19:45</span><span class="name">Eğitimde Ölçme & Değerlendirme <span class="room">(301/A)</span></span></div>
+        <div class="break">15 DK ARA</div>
+        <div class="session" data-start="20:00" data-end="20:45"><span class="time">20:00 - 20:45</span><span class="name">Eğitimde Ölçme & Değerlendirme <span class="room">(301/A)</span></span></div>
+        <div class="break">15 DK ARA</div>
+        <div class="session" data-start="21:00" data-end="21:45"><span class="time">21:00 - 21:45</span><span class="name">Eğitimde Ölçme & Değerlendirme <span class="room">(301/A)</span></span></div>
+    </div>
+
+    <div class="day-block" id="day-5">
+        <div class="day-header"><div class="day-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>CUMA</div>
+        <div class="session" data-start="17:00" data-end="17:45"><span class="time">17:00 - 17:45</span><span class="name">Dinler Tarihi II <span class="room">(301/A)</span></span></div>
+        <div class="break">15 DK ARA</div>
+        <div class="session" data-start="18:00" data-end="18:45"><span class="time">18:00 - 18:45</span><span class="name">Dinler Tarihi II <span class="room">(301/A)</span></span></div>
+        <div class="main-gap"></div>
+        <div class="session" data-start="19:00" data-end="19:45"><span class="time">19:00 - 19:45</span><span class="name">Kur'an Okuma ve Tecvid VI<span class="room">(301/A)</span></span></div>
+        <div class="break">15 DK ARA</div>
+        <div class="session" data-start="20:00" data-end="20:45"><span class="time">20:00 - 20:45</span><span class="name">Kur'an Okuma ve Tecvid VI<span class="room">(301/A)</span></span></div>
+    </div>
+
+    <footer>S23 PLUS OPTİMİZE TASARIM</footer>
+</div>
+
+<div class="footer-signature">
+    <div class="shimmer-box">
+        <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        <span class="sig-label">Powered by</span>
+        <span class="sig-name">@bilginsahiner01</span>
+    </div>
+    <svg class="v-icon" viewBox="0 0 24 24"><path d="M22.5 12.5c0-1.58-.88-2.95-2.18-3.65.25-.53.38-1.11.38-1.73 0-2.21-1.79-4-4-4-.62 0-1.2.13-1.73.38C14.27 2.18 12.9 1.3 11.32 1.3c-1.58 0-2.95.88-3.65 2.18-.53-.25-1.11-.38-1.73-.38-2.21 0-4 1.79-4 4 0 .62.13 1.2.38 1.73C1.3 9.55.42 10.92.42 12.5c0 1.58.88 2.95 2.18 3.65-.25.53-.38 1.11-.38 1.73 0 2.21 1.79 4 4 4 .62 0 1.2-.13 1.73-.38.7 1.3 2.07 2.18 3.65 2.18 1.58 0 2.95-.88 3.65-2.18.53.25 1.11.38 1.73.38 2.21 0 4-1.79 4-4 0-.62-.13-1.2-.38-1.73 1.3-.7 2.18-2.07 2.18-3.65zm-12.65 5.04l-4.25-4.25 1.41-1.41 2.84 2.84 6.76-6.76 1.41 1.41-8.17 8.17z"/></svg>
+</div>
+
+<script>
+    function updateLiveStatus() {
+        const now = new Date();
+        const currentDay = now.getDay();
+        const currentTime = now.getHours() * 60 + now.getMinutes();
+        document.querySelectorAll('.time').forEach(t => t.className = 'time');
+        document.querySelectorAll('.day-block').forEach(b => b.classList.remove('active-day'));
+        if(currentDay >= 1 && currentDay <= 5) {
+            const todayBlock = document.getElementById('day-' + currentDay);
+            if(todayBlock) {
+                todayBlock.classList.add('active-day');
+                const sessions = todayBlock.querySelectorAll('.session');
+                sessions.forEach(session => {
+                    const startStr = session.getAttribute('data-start').split(':');
+                    const endStr = session.getAttribute('data-end').split(':');
+                    const startTime = parseInt(startStr[0]) * 60 + parseInt(startStr[1]);
+                    const endTime = parseInt(endStr[0]) * 60 + parseInt(endStr[1]);
+                    const timeSpan = session.querySelector('.time');
+                    if (currentTime >= startTime && currentTime <= endTime) {
+                        timeSpan.className = 'time time-now';
+                    } else if (currentTime > endTime) {
+                        timeSpan.className = 'time time-past';
+                    }
+                });
+            }
+        }
+    }
+    setInterval(updateLiveStatus, 10000);
+    window.onload = updateLiveStatus;
+</script>
+
+</body>
+</html>
