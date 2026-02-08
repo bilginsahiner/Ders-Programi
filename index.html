@@ -21,8 +21,6 @@
         --highlight: #1a1a1a;
         --break-text: #555555;
         --verified-blue: #0095f6;
-        --today-green: #2ecc71;
-        --past-red: #e74c3c;
     }
     body { 
         font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -42,17 +40,47 @@
     }
     
     .day-icon { width: 20px; height: 20px; margin-right: 10px; display: flex; align-items: center; justify-content: center; }
-    .day-icon svg { animation: ring 4s ease-in-out infinite; stroke: white; }
+    /* İKONLARIN GÖRÜNMESİNİ SAĞLAYAN SABİT RENK */
+    .day-icon svg { stroke: white; }
     
-    .active-day .day-header { color: var(--today-green) !important; }
-    .active-day .day-icon svg { stroke: var(--today-green) !important; }
-    .time-now { color: var(--today-green) !important; font-weight: bold; }
-    .time-past { color: var(--past-red) !important; text-decoration: line-through; }
+    /* SADECE AKTİF GÜNÜN İKONU SALLANIR */
+    .active-ring svg { animation: ring 4s ease-in-out infinite; }
+    
+    /* AKTİF GÜN BAŞLIĞI ALTIN HÜZME */
+    .active-day-shimmer {
+        background: linear-gradient(-90deg, #ffffff 0%, #ffffff 35%, #ffd700 50%, #ffffff 65%, #ffffff 100%);
+        background-size: 200% auto;
+        -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+        animation: reverseShimmer 7s linear infinite;
+    }
+
+    /* YEŞİL IŞIK HUZMESİ (Aktif Ders) */
+    .time-now {
+        font-weight: bold;
+        background: linear-gradient(120deg, #ffffff 40%, rgba(46, 204, 113, 0.8) 50%, #ffffff 60%);
+        background-size: 200% auto;
+        -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+        animation: reverseShimmer 7s linear infinite;
+    }
+
+    /* KIRMIZI IŞIK HUZMESİ (Geçmiş Ders) */
+    .time-past {
+        text-decoration: line-through;
+        background: linear-gradient(120deg, rgba(160,160,160,0.6) 40%, rgba(231, 76, 60, 0.5) 50%, rgba(160,160,160,0.6) 60%);
+        background-size: 200% auto;
+        -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+        animation: reverseShimmer 7s linear infinite;
+    }
 
     @keyframes ring {
         0%, 25%, 100% { transform: rotate(0); }
         5% { transform: rotate(15deg); }
         10% { transform: rotate(-15deg); }
+    }
+
+    @keyframes reverseShimmer {
+        0% { background-position: 200% center; }
+        100% { background-position: -200% center; }
     }
 
     .session { padding: 12px 15px; }
@@ -76,16 +104,23 @@
         animation: reverseShimmer 7s linear infinite;
     }
 
-    @keyframes reverseShimmer {
-        0% { background-position: 200% center; }
-        100% { background-position: -200% center; }
+    .ghost-purple-shimmer {
+        text-align: center;
+        font-size: 0.65rem;
+        font-weight: 500;
+        letter-spacing: 2px;
+        padding: 40px 20px;
+        text-transform: uppercase;
+        background: linear-gradient(120deg, rgba(255,255,255,1) 40%, rgba(138,43,226,0.5) 50%, rgba(255,255,255,1) 60%);
+        background-size: 200% auto;
+        -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+        animation: reverseShimmer 7s linear infinite;
     }
 
     .sig-label { font-size: 0.6rem; font-weight: 400; }
     .sig-name { font-size: 0.7rem; font-weight: 600; }
     .ig-icon { width: 14px; height: 14px; fill: white; }
     .v-icon { fill: var(--verified-blue) !important; width: 12px; height: 12px; }
-    footer { text-align: center; font-size: 0.6rem; color: #333; padding: 30px; letter-spacing: 1px; }
 </style>
 </head>
 <body>
@@ -157,7 +192,7 @@
         <div class="session" data-start="20:00" data-end="20:45"><span class="time">20:00 - 20:45</span><span class="name">Kur'an Okuma ve Tecvid VI<span class="room">(301/A)</span></span></div>
     </div>
 
-    <footer>S23 PLUS OPTİMİZE TASARIM</footer>
+    <div class="ghost-purple-shimmer">2026 Güncel Ders Programı</div>
 </div>
 
 <div class="footer-signature">
@@ -174,12 +209,22 @@
         const now = new Date();
         const currentDay = now.getDay();
         const currentTime = now.getHours() * 60 + now.getMinutes();
+        
+        // Resetler
         document.querySelectorAll('.time').forEach(t => t.className = 'time');
-        document.querySelectorAll('.day-block').forEach(b => b.classList.remove('active-day'));
+        document.querySelectorAll('.day-header').forEach(h => h.classList.remove('active-day-shimmer'));
+        document.querySelectorAll('.day-icon').forEach(i => i.classList.remove('active-ring'));
+        
         if(currentDay >= 1 && currentDay <= 5) {
             const todayBlock = document.getElementById('day-' + currentDay);
             if(todayBlock) {
-                todayBlock.classList.add('active-day');
+                // Gün başlığına altın hüzme ve ikon animasyonu ekle
+                const header = todayBlock.querySelector('.day-header');
+                const icon = todayBlock.querySelector('.day-icon');
+                header.classList.add('active-day-shimmer');
+                icon.classList.add('active-ring');
+
+                // Dersleri kontrol et
                 const sessions = todayBlock.querySelectorAll('.session');
                 sessions.forEach(session => {
                     const startStr = session.getAttribute('data-start').split(':');
