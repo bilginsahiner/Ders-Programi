@@ -211,6 +211,12 @@
     setInterval(updateLiveStatus, 10000);
     window.onload = updateLiveStatus;
 </script>
+    <script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js');
+}
+</script>
+
 
 </body>
 </html>
