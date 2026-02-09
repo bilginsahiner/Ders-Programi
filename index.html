@@ -16,8 +16,8 @@
         --bg: #000000;
         --card: #121212;
         --border: #222222;
-        --accent: #ffffff;
-        --secondary: #ffffff;
+        --accent: #ffffff; /* Temel Beyaz */
+        --secondary: #ffffff; /* Silik görünmemesi için beyaza çekildi */
         --highlight: #1a1a1a;
         --break-text: #555555;
         --verified-blue: #0095f6;
@@ -44,6 +44,7 @@
     
     .active-ring svg { animation: ring 4s ease-in-out infinite; }
     
+    /* Aktif Gün Parlaması */
     .active-day-shimmer {
         background: linear-gradient(-90deg, #ffffff 0%, #ffffff 35%, #ffd700 50%, #ffffff 65%, #ffffff 100%);
         background-size: 200% auto;
@@ -51,7 +52,8 @@
         animation: reverseShimmer 7s linear infinite;
     }
 
-    .time-now, .break-now {
+    /* Aktif Ders Parlaması */
+    .time-now {
         font-weight: bold !important;
         background: linear-gradient(120deg, #ffffff 40%, #2ecc71 50%, #ffffff 60%);
         background-size: 200% auto;
@@ -59,6 +61,7 @@
         animation: reverseShimmer 7s linear infinite;
     }
 
+    /* Geçmiş Ders */
     .time-past {
         text-decoration: line-through;
         opacity: 0.4;
@@ -79,6 +82,7 @@
     .session { padding: 12px 15px; }
     .break { padding: 8px 15px; background: #080808; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; font-size: 0.65rem; color: var(--break-text); text-transform: uppercase; letter-spacing: 1px; }
     
+    /* Temel Metin Renkleri - Net Beyaz */
     .time { font-size: 0.7rem; color: #ffffff; font-family: monospace; display: block; margin-bottom: 2px; }
     .name { font-size: 0.85rem; font-weight: 400; color: #ffffff; }
     .room { color: #aaaaaa; font-size: 0.8rem; margin-left: 4px; }
@@ -135,53 +139,53 @@
     <div class="day-block" id="day-1">
         <div class="day-header"><div class="day-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>PAZARTESİ</div>
         <div class="session" data-start="17:00" data-end="17:45"><span class="time">17:00 - 17:45</span><span class="name">Türk Düşünce Tarihi <span class="room">(304/B)</span></span></div>
-        <div class="break" data-start="17:45" data-end="18:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="18:00" data-end="18:45"><span class="time">18:00 - 18:45</span><span class="name">Türk Düşünce Tarihi <span class="room">(304/B)</span></span></div>
     </div>
 
     <div class="day-block" id="day-2">
         <div class="day-header"><div class="day-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>SALI</div>
         <div class="session" data-start="17:00" data-end="17:45"><span class="time">17:00 - 17:45</span><span class="name">Tasavvuf Metinleri <span class="room">(301/A)</span></span></div>
-        <div class="break" data-start="17:45" data-end="18:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="18:00" data-end="18:45"><span class="time">18:00 - 18:45</span><span class="name">Tasavvuf Metinleri <span class="room">(301/A)</span></span></div>
-        <div class="break" data-start="18:45" data-end="19:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="19:00" data-end="19:45"><span class="time">19:00 - 19:45</span><span class="name">Tasavvuf II <span class="room">(301/A)</span></span></div>
-        <div class="break" data-start="19:45" data-end="20:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="20:00" data-end="20:45"><span class="time">20:00 - 20:45</span><span class="name">Tasavvuf II <span class="room">(301/A)</span></span></div>
     </div>
 
     <div class="day-block" id="day-3">
         <div class="day-header"><div class="day-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>ÇARŞAMBA</div>
         <div class="session" data-start="19:00" data-end="19:45"><span class="time">19:00 - 19:45</span><span class="name">Osmanlı Türkçesi <span class="room">(301/A)</span></span></div>
-        <div class="break" data-start="19:45" data-end="20:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="20:00" data-end="20:45"><span class="time">20:00 - 20:45</span><span class="name">Osmanlı Türkçesi <span class="room">(301/A)</span></span></div>
-        <div class="break" data-start="20:45" data-end="21:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="21:00" data-end="21:45"><span class="time">21:00 - 21:45</span><span class="name">Sistematik Kelam <span class="room">(301/A)</span></span></div>
-        <div class="break" data-start="21:45" data-end="22:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="22:00" data-end="22:45"><span class="time">22:00 - 22:45</span><span class="name">Sistematik Kelam <span class="room">(301/A)</span></span></div>
     </div>
 
     <div class="day-block" id="day-4">
         <div class="day-header"><div class="day-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>PERŞEMBE</div>
         <div class="session" data-start="17:00" data-end="17:45"><span class="time">17:00 - 17:45</span><span class="name">Mantık Yanlışları <span class="room">(301/A)</span></span></div>
-        <div class="break" data-start="17:45" data-end="18:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="18:00" data-end="18:45"><span class="time">18:00 - 18:45</span><span class="name">Mantık Yanlışları <span class="room">(301/A)</span></span></div>
-        <div class="break" data-start="18:45" data-end="19:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="19:00" data-end="19:45"><span class="time">19:00 - 19:45</span><span class="name">Eğitimde Ölçme & Değerlendirme <span class="room">(301/A)</span></span></div>
-        <div class="break" data-start="19:45" data-end="20:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="20:00" data-end="20:45"><span class="time">20:00 - 20:45</span><span class="name">Eğitimde Ölçme & Değerlendirme <span class="room">(301/A)</span></span></div>
-        <div class="break" data-start="20:45" data-end="21:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="21:00" data-end="21:45"><span class="time">21:00 - 21:45</span><span class="name">Eğitimde Ölçme & Değerlendirme <span class="room">(301/A)</span></span></div>
     </div>
 
     <div class="day-block" id="day-5">
         <div class="day-header"><div class="day-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>CUMA</div>
         <div class="session" data-start="17:00" data-end="17:45"><span class="time">17:00 - 17:45</span><span class="name">Dinler Tarihi II <span class="room">(301/A)</span></span></div>
-        <div class="break" data-start="17:45" data-end="18:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="18:00" data-end="18:45"><span class="time">18:00 - 18:45</span><span class="name">Dinler Tarihi II <span class="room">(301/A)</span></span></div>
-        <div class="break" data-start="18:45" data-end="19:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="19:00" data-end="19:45"><span class="time">19:00 - 19:45</span><span class="name">Kur'an Okuma ve Tecvid VI <span class="room">(301/A)</span></span></div>
-        <div class="break" data-start="19:45" data-end="20:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="20:00" data-end="20:45"><span class="time">20:00 - 20:45</span><span class="name">Kur'an Okuma ve Tecvid VI <span class="room">(301/A)</span></span></div>
     </div>
 
@@ -205,7 +209,6 @@
         
         document.querySelectorAll('.time').forEach(t => t.classList.remove('time-now', 'time-past'));
         document.querySelectorAll('.name').forEach(n => n.classList.remove('time-now', 'time-past'));
-        document.querySelectorAll('.break').forEach(b => b.classList.remove('break-now')); // Araları temizle
         document.querySelectorAll('.day-header').forEach(h => h.classList.remove('active-day-shimmer'));
         document.querySelectorAll('.day-icon').forEach(i => i.classList.remove('active-ring'));
         
@@ -215,7 +218,6 @@
                 todayBlock.querySelector('.day-header').classList.add('active-day-shimmer');
                 todayBlock.querySelector('.day-icon').classList.add('active-ring');
 
-                // Dersleri Kontrol Et
                 const sessions = todayBlock.querySelectorAll('.session');
                 sessions.forEach(session => {
                     const startStr = session.getAttribute('data-start').split(':');
@@ -232,19 +234,6 @@
                     } else if (currentTime > endTime) {
                         timeSpan.classList.add('time-past');
                         nameSpan.classList.add('time-past');
-                    }
-                });
-
-                // Araları Kontrol Et
-                const breaks = todayBlock.querySelectorAll('.break');
-                breaks.forEach(brk => {
-                    const startStr = brk.getAttribute('data-start').split(':');
-                    const endStr = brk.getAttribute('data-end').split(':');
-                    const startTime = parseInt(startStr[0]) * 60 + parseInt(startStr[1]);
-                    const endTime = parseInt(endStr[0]) * 60 + parseInt(endStr[1]);
-
-                    if (currentTime >= startTime && currentTime <= endTime) {
-                        brk.classList.add('break-now');
                     }
                 });
             }
