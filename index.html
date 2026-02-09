@@ -53,7 +53,7 @@
 
     .time-now {
         font-weight: bold !important;
-        background: linear-gradient(120deg, #ffffff 40%, rgba(46, 204, 113, 1) 50%, #ffffff 60%);
+        background: linear-gradient(120deg, #ffffff 40%, #2ecc71 50%, #ffffff 60%);
         background-size: 200% auto;
         -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
         animation: reverseShimmer 7s linear infinite;
@@ -61,7 +61,12 @@
 
     .time-past {
         text-decoration: line-through;
-        opacity: 0.5;
+        font-weight: bold !important;
+        background: linear-gradient(120deg, #ff4d4d 40%, #ff0000 50%, #ff4d4d 60%);
+        background-size: 200% auto;
+        -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+        animation: reverseShimmer 5s linear infinite;
+        opacity: 0.7;
     }
 
     @keyframes ring {
@@ -133,53 +138,53 @@
     <div class="day-block" id="day-1">
         <div class="day-header"><div class="day-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>PAZARTESİ</div>
         <div class="session" data-start="17:00" data-end="17:45"><span class="time">17:00 - 17:45</span><span class="name">Türk Düşünce Tarihi <span class="room">(304/B)</span></span></div>
-        <div class="break" data-start="17:45" data-end="18:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="18:00" data-end="18:45"><span class="time">18:00 - 18:45</span><span class="name">Türk Düşünce Tarihi <span class="room">(304/B)</span></span></div>
     </div>
 
     <div class="day-block" id="day-2">
         <div class="day-header"><div class="day-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>SALI</div>
         <div class="session" data-start="17:00" data-end="17:45"><span class="time">17:00 - 17:45</span><span class="name">Tasavvuf Metinleri <span class="room">(301/A)</span></span></div>
-        <div class="break" data-start="17:45" data-end="18:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="18:00" data-end="18:45"><span class="time">18:00 - 18:45</span><span class="name">Tasavvuf Metinleri <span class="room">(301/A)</span></span></div>
-        <div class="break" data-start="18:45" data-end="19:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="19:00" data-end="19:45"><span class="time">19:00 - 19:45</span><span class="name">Tasavvuf II <span class="room">(301/A)</span></span></div>
-        <div class="break" data-start="19:45" data-end="20:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="20:00" data-end="20:45"><span class="time">20:00 - 20:45</span><span class="name">Tasavvuf II <span class="room">(301/A)</span></span></div>
     </div>
 
     <div class="day-block" id="day-3">
         <div class="day-header"><div class="day-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>ÇARŞAMBA</div>
         <div class="session" data-start="19:00" data-end="19:45"><span class="time">19:00 - 19:45</span><span class="name">Osmanlı Türkçesi <span class="room">(301/A)</span></span></div>
-        <div class="break" data-start="19:45" data-end="20:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="20:00" data-end="20:45"><span class="time">20:00 - 20:45</span><span class="name">Osmanlı Türkçesi <span class="room">(301/A)</span></span></div>
-        <div class="break" data-start="20:45" data-end="21:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="21:00" data-end="21:45"><span class="time">21:00 - 21:45</span><span class="name">Sistematik Kelam <span class="room">(301/A)</span></span></div>
-        <div class="break" data-start="21:45" data-end="22:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="22:00" data-end="22:45"><span class="time">22:00 - 22:45</span><span class="name">Sistematik Kelam <span class="room">(301/A)</span></span></div>
     </div>
 
     <div class="day-block" id="day-4">
         <div class="day-header"><div class="day-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>PERŞEMBE</div>
         <div class="session" data-start="17:00" data-end="17:45"><span class="time">17:00 - 17:45</span><span class="name">Mantık Yanlışları <span class="room">(301/A)</span></span></div>
-        <div class="break" data-start="17:45" data-end="18:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="18:00" data-end="18:45"><span class="time">18:00 - 18:45</span><span class="name">Mantık Yanlışları <span class="room">(301/A)</span></span></div>
-        <div class="break" data-start="18:45" data-end="19:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="19:00" data-end="19:45"><span class="time">19:00 - 19:45</span><span class="name">Eğitimde Ölçme & Değerlendirme <span class="room">(301/A)</span></span></div>
-        <div class="break" data-start="19:45" data-end="20:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="20:00" data-end="20:45"><span class="time">20:00 - 20:45</span><span class="name">Eğitimde Ölçme & Değerlendirme <span class="room">(301/A)</span></span></div>
-        <div class="break" data-start="20:45" data-end="21:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="21:00" data-end="21:45"><span class="time">21:00 - 21:45</span><span class="name">Eğitimde Ölçme & Değerlendirme <span class="room">(301/A)</span></span></div>
     </div>
 
     <div class="day-block" id="day-5">
         <div class="day-header"><div class="day-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>CUMA</div>
         <div class="session" data-start="17:00" data-end="17:45"><span class="time">17:00 - 17:45</span><span class="name">Dinler Tarihi II <span class="room">(301/A)</span></span></div>
-        <div class="break" data-start="17:45" data-end="18:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="18:00" data-end="18:45"><span class="time">18:00 - 18:45</span><span class="name">Dinler Tarihi II <span class="room">(301/A)</span></span></div>
-        <div class="break" data-start="18:45" data-end="19:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="19:00" data-end="19:45"><span class="time">19:00 - 19:45</span><span class="name">Kur'an Okuma ve Tecvid VI <span class="room">(301/A)</span></span></div>
-        <div class="break" data-start="19:45" data-end="20:00">15 DK ARA</div>
+        <div class="break">15 DK ARA</div>
         <div class="session" data-start="20:00" data-end="20:45"><span class="time">20:00 - 20:45</span><span class="name">Kur'an Okuma ve Tecvid VI <span class="room">(301/A)</span></span></div>
     </div>
 
@@ -202,42 +207,33 @@
         const currentTime = now.getHours() * 60 + now.getMinutes();
         
         // Temizleme
-        document.querySelectorAll('.time').forEach(t => t.classList.remove('time-now', 'time-past'));
-        document.querySelectorAll('.name').forEach(n => n.classList.remove('time-now', 'time-past'));
-        document.querySelectorAll('.break').forEach(b => b.classList.remove('time-now'));
+        document.querySelectorAll('.time, .name').forEach(el => {
+            el.classList.remove('time-now', 'time-past');
+        });
         document.querySelectorAll('.day-header').forEach(h => h.classList.remove('active-day-shimmer'));
         document.querySelectorAll('.day-icon').forEach(i => i.classList.remove('active-ring'));
         
         if(currentDay >= 1 && currentDay <= 5) {
             const todayBlock = document.getElementById('day-' + currentDay);
             if(todayBlock) {
-                const header = todayBlock.querySelector('.day-header');
-                const icon = todayBlock.querySelector('.day-icon');
-                header.classList.add('active-day-shimmer');
-                icon.classList.add('active-ring');
+                todayBlock.querySelector('.day-header').classList.add('active-day-shimmer');
+                todayBlock.querySelector('.day-icon').classList.add('active-ring');
 
-                // Dersleri ve Araları tara
-                const scheduleItems = todayBlock.querySelectorAll('.session, .break');
-                scheduleItems.forEach(item => {
+                todayBlock.querySelectorAll('.session').forEach(item => {
                     const startStr = item.getAttribute('data-start').split(':');
                     const endStr = item.getAttribute('data-end').split(':');
                     const startTime = parseInt(startStr[0]) * 60 + parseInt(startStr[1]);
                     const endTime = parseInt(endStr[0]) * 60 + parseInt(endStr[1]);
 
-                    if (item.classList.contains('session')) {
-                        const timeSpan = item.querySelector('.time');
-                        const nameSpan = item.querySelector('.name');
-                        if (currentTime >= startTime && currentTime <= endTime) {
-                            timeSpan.classList.add('time-now');
-                            nameSpan.classList.add('time-now');
-                        } else if (currentTime > endTime) {
-                            timeSpan.classList.add('time-past');
-                            nameSpan.classList.add('time-past');
-                        }
-                    } else if (item.classList.contains('break')) {
-                        if (currentTime >= startTime && currentTime <= endTime) {
-                            item.classList.add('time-now');
-                        }
+                    const t = item.querySelector('.time');
+                    const n = item.querySelector('.name');
+
+                    if (currentTime >= startTime && currentTime <= endTime) {
+                        t.classList.add('time-now'); 
+                        n.classList.add('time-now');
+                    } else if (currentTime > endTime) {
+                        t.classList.add('time-past'); 
+                        n.classList.add('time-past');
                     }
                 });
             }
