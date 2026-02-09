@@ -7,6 +7,7 @@
 
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Ders Programı">
 <link rel="icon" type="image/png" href="ikon.png">
 <link rel="apple-touch-icon" href="ikon.png">
@@ -201,12 +202,12 @@
 </div>
 
 <script>
+    // 1. CANLI DURUM GÜNCELLEME (DERSLER İÇİN)
     function updateLiveStatus() {
         const now = new Date();
         const currentDay = now.getDay();
         const currentTime = now.getHours() * 60 + now.getMinutes();
         
-        // Temizleme
         document.querySelectorAll('.time, .name').forEach(el => {
             el.classList.remove('time-now', 'time-past');
         });
@@ -229,11 +230,9 @@
                     const n = item.querySelector('.name');
 
                     if (currentTime >= startTime && currentTime <= endTime) {
-                        t.classList.add('time-now'); 
-                        n.classList.add('time-now');
+                        t.classList.add('time-now'); n.classList.add('time-now');
                     } else if (currentTime > endTime) {
-                        t.classList.add('time-past'); 
-                        n.classList.add('time-past');
+                        t.classList.add('time-past'); n.classList.add('time-past');
                     }
                 });
             }
@@ -241,7 +240,26 @@
     }
     setInterval(updateLiveStatus, 10000);
     window.onload = updateLiveStatus;
+
+    // 2. ÇEVRİMDIŞI ÇALIŞMA (SERVICE WORKER) KAYDI
+    if ('serviceWorker' in navigator) {
+        const swCode = `
+            const CACHE_NAME = 'ders-programi-v1';
+            const ASSETS = [window.location.href];
+            self.addEventListener('install', (e) => {
+                e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(ASSETS)));
+            });
+            self.addEventListener('fetch', (e) => {
+                e.respondWith(caches.match(e.request).then(res => res || fetch(e.request)));
+            });
+        `;
+        const blob = new Blob([swCode], {type: 'application/javascript'});
+        const swUrl = URL.createObjectURL(blob);
+        navigator.serviceWorker.register(swUrl);
+    }
 </script>
+
+<link rel="manifest" href="data:application/json;base64,ewogICJub21lIjogIkRlcnMgUHJvZ3JhbSIsCiAgInNob3J0X25hbWUiOiAiRGVycyIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjMDAwMDAwIiwKICAidGhlbWVfY29sb3IiOiAiIzAwMDAwMCIsCiAgImljb25zIjogW3sgInNyYyI6ICJpa29uLnBuZyIsICJzaXplcyI6ICIxOTJ4MTkyIiwgInR5cGUiOiAiaW1hZ2UvcG5nIiB9XQp9">
 
 </body>
 </html>
