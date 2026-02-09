@@ -16,8 +16,8 @@
         --bg: #000000;
         --card: #121212;
         --border: #222222;
-        --accent: #ffffff; /* Temel Beyaz */
-        --secondary: #ffffff; /* Silik görünmemesi için beyaza çekildi */
+        --accent: #ffffff;
+        --secondary: #a0a0a0;
         --highlight: #1a1a1a;
         --break-text: #555555;
         --verified-blue: #0095f6;
@@ -30,42 +30,38 @@
     }
     .container { width: 100%; max-width: 400px; box-sizing: border-box; padding-bottom: 80px; }
     header { padding: 25px 0; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
-    h1 { font-size: 0.9rem; font-weight: 300; letter-spacing: 5px; margin: 0; text-transform: uppercase; text-align: center; color: #ffffff; }
+    h1 { font-size: 0.9rem; font-weight: 300; letter-spacing: 5px; margin: 0; text-transform: uppercase; text-align: center; }
     
     .day-block { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 15px; overflow: hidden; }
     .day-header { 
         background: var(--highlight); padding: 12px 15px; font-size: 0.75rem; font-weight: 700; 
-        letter-spacing: 1px; border-bottom: 1px solid var(--border); color: #ffffff;
+        letter-spacing: 1px; border-bottom: 1px solid var(--border); color: var(--accent);
         display: flex; align-items: center;
     }
     
     .day-icon { width: 20px; height: 20px; margin-right: 10px; display: flex; align-items: center; justify-content: center; }
-    .day-icon svg { stroke: #ffffff; }
+    .day-icon svg { stroke: white; }
     
     .active-ring svg { animation: ring 4s ease-in-out infinite; }
     
-    /* Aktif Gün Parlaması */
     .active-day-shimmer {
         background: linear-gradient(-90deg, #ffffff 0%, #ffffff 35%, #ffd700 50%, #ffffff 65%, #ffffff 100%);
         background-size: 200% auto;
-        -webkit-background-clip: text; background-clip: text; color: transparent;
+        -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
         animation: reverseShimmer 7s linear infinite;
     }
 
-    /* Aktif Ders Parlaması */
     .time-now {
         font-weight: bold !important;
-        background: linear-gradient(120deg, #ffffff 40%, #2ecc71 50%, #ffffff 60%);
+        background: linear-gradient(120deg, #ffffff 40%, rgba(46, 204, 113, 1) 50%, #ffffff 60%);
         background-size: 200% auto;
-        -webkit-background-clip: text; background-clip: text; color: transparent;
+        -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
         animation: reverseShimmer 7s linear infinite;
     }
 
-    /* Geçmiş Ders */
     .time-past {
         text-decoration: line-through;
-        opacity: 0.4;
-        color: #ffffff !important;
+        opacity: 0.5;
     }
 
     @keyframes ring {
@@ -81,11 +77,9 @@
 
     .session { padding: 12px 15px; }
     .break { padding: 8px 15px; background: #080808; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; font-size: 0.65rem; color: var(--break-text); text-transform: uppercase; letter-spacing: 1px; }
-    
-    /* Temel Metin Renkleri - Net Beyaz */
-    .time { font-size: 0.7rem; color: #ffffff; font-family: monospace; display: block; margin-bottom: 2px; }
-    .name { font-size: 0.85rem; font-weight: 400; color: #ffffff; }
-    .room { color: #aaaaaa; font-size: 0.8rem; margin-left: 4px; }
+    .time { font-size: 0.7rem; color: var(--secondary); font-family: monospace; display: block; margin-bottom: 2px; }
+    .name { font-size: 0.85rem; font-weight: 400; color: #e0e0e0; }
+    .room { color: var(--secondary); font-size: 0.8rem; margin-left: 4px; }
 
     .footer-signature {
         position: fixed; bottom: 15px; right: 15px; display: flex; align-items: center; gap: 4px;
@@ -97,7 +91,7 @@
         display: flex; align-items: center; gap: 6px;
         background: linear-gradient(-90deg, #ffffff 0%, #ffffff 35%, #ffd700 50%, #ffffff 65%, #ffffff 100%);
         background-size: 200% auto;
-        -webkit-background-clip: text; background-clip: text; color: transparent;
+        -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
         animation: reverseShimmer 7s linear infinite;
     }
 
@@ -108,14 +102,14 @@
         letter-spacing: 2px;
         padding: 40px 20px;
         text-transform: uppercase;
-        background: linear-gradient(120deg, #ffffff 40%, rgba(138,43,226,0.6) 50%, #ffffff 60%);
+        background: linear-gradient(120deg, rgba(255,255,255,1) 40%, rgba(138,43,226,0.5) 50%, rgba(255,255,255,1) 60%);
         background-size: 200% auto;
-        -webkit-background-clip: text; background-clip: text; color: transparent;
+        -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
         animation: reverseShimmer 7s linear infinite;
     }
 
-    .sig-label { font-size: 0.6rem; font-weight: 400; color: #ffffff; }
-    .sig-name { font-size: 0.7rem; font-weight: 600; color: #ffffff; }
+    .sig-label { font-size: 0.6rem; font-weight: 400; }
+    .sig-name { font-size: 0.7rem; font-weight: 600; }
     .ig-icon { width: 14px; height: 14px; fill: white; }
     .v-icon { fill: var(--verified-blue) !important; width: 12px; height: 12px; }
 </style>
@@ -207,6 +201,7 @@
         const currentDay = now.getDay();
         const currentTime = now.getHours() * 60 + now.getMinutes();
         
+        // Temizleme
         document.querySelectorAll('.time').forEach(t => t.classList.remove('time-now', 'time-past'));
         document.querySelectorAll('.name').forEach(n => n.classList.remove('time-now', 'time-past'));
         document.querySelectorAll('.day-header').forEach(h => h.classList.remove('active-day-shimmer'));
@@ -215,8 +210,10 @@
         if(currentDay >= 1 && currentDay <= 5) {
             const todayBlock = document.getElementById('day-' + currentDay);
             if(todayBlock) {
-                todayBlock.querySelector('.day-header').classList.add('active-day-shimmer');
-                todayBlock.querySelector('.day-icon').classList.add('active-ring');
+                const header = todayBlock.querySelector('.day-header');
+                const icon = todayBlock.querySelector('.day-icon');
+                header.classList.add('active-day-shimmer');
+                icon.classList.add('active-ring');
 
                 const sessions = todayBlock.querySelectorAll('.session');
                 sessions.forEach(session => {
@@ -230,7 +227,7 @@
 
                     if (currentTime >= startTime && currentTime <= endTime) {
                         timeSpan.classList.add('time-now');
-                        nameSpan.classList.add('time-now');
+                        nameSpan.classList.add('time-now'); // Ders ismi de artık parlayacak
                     } else if (currentTime > endTime) {
                         timeSpan.classList.add('time-past');
                         nameSpan.classList.add('time-past');
