@@ -52,8 +52,8 @@
     }
 
     .time-now {
-        font-weight: bold;
-        background: linear-gradient(120deg, #ffffff 40%, rgba(46, 204, 113, 0.8) 50%, #ffffff 60%);
+        font-weight: bold !important;
+        background: linear-gradient(120deg, #ffffff 40%, rgba(46, 204, 113, 1) 50%, #ffffff 60%);
         background-size: 200% auto;
         -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
         animation: reverseShimmer 7s linear infinite;
@@ -61,10 +61,7 @@
 
     .time-past {
         text-decoration: line-through;
-        background: linear-gradient(120deg, rgba(160,160,160,0.6) 40%, rgba(231, 76, 60, 0.5) 50%, rgba(160,160,160,0.6) 60%);
-        background-size: 200% auto;
-        -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
-        animation: reverseShimmer 7s linear infinite;
+        opacity: 0.5;
     }
 
     @keyframes ring {
@@ -204,7 +201,9 @@
         const currentDay = now.getDay();
         const currentTime = now.getHours() * 60 + now.getMinutes();
         
-        document.querySelectorAll('.time').forEach(t => t.className = 'time');
+        // Temizleme
+        document.querySelectorAll('.time').forEach(t => t.classList.remove('time-now', 'time-past'));
+        document.querySelectorAll('.name').forEach(n => n.classList.remove('time-now', 'time-past'));
         document.querySelectorAll('.day-header').forEach(h => h.classList.remove('active-day-shimmer'));
         document.querySelectorAll('.day-icon').forEach(i => i.classList.remove('active-ring'));
         
@@ -222,11 +221,16 @@
                     const endStr = session.getAttribute('data-end').split(':');
                     const startTime = parseInt(startStr[0]) * 60 + parseInt(startStr[1]);
                     const endTime = parseInt(endStr[0]) * 60 + parseInt(endStr[1]);
+                    
                     const timeSpan = session.querySelector('.time');
+                    const nameSpan = session.querySelector('.name');
+
                     if (currentTime >= startTime && currentTime <= endTime) {
-                        timeSpan.className = 'time time-now';
+                        timeSpan.classList.add('time-now');
+                        nameSpan.classList.add('time-now'); // Ders ismi de artık parlayacak
                     } else if (currentTime > endTime) {
-                        timeSpan.className = 'time time-past';
+                        timeSpan.classList.add('time-past');
+                        nameSpan.classList.add('time-past');
                     }
                 });
             }
