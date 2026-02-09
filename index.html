@@ -17,7 +17,7 @@
         --card: #121212;
         --border: #222222;
         --accent: #ffffff;
-        --secondary: #a0a0a0;
+        --secondary: #ffffff;
         --highlight: #1a1a1a;
         --break-text: #555555;
         --verified-blue: #0095f6;
@@ -30,38 +30,39 @@
     }
     .container { width: 100%; max-width: 400px; box-sizing: border-box; padding-bottom: 80px; }
     header { padding: 25px 0; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
-    h1 { font-size: 0.9rem; font-weight: 300; letter-spacing: 5px; margin: 0; text-transform: uppercase; text-align: center; }
+    h1 { font-size: 0.9rem; font-weight: 300; letter-spacing: 5px; margin: 0; text-transform: uppercase; text-align: center; color: #ffffff; }
     
     .day-block { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 15px; overflow: hidden; }
     .day-header { 
         background: var(--highlight); padding: 12px 15px; font-size: 0.75rem; font-weight: 700; 
-        letter-spacing: 1px; border-bottom: 1px solid var(--border); color: var(--accent);
+        letter-spacing: 1px; border-bottom: 1px solid var(--border); color: #ffffff;
         display: flex; align-items: center;
     }
     
     .day-icon { width: 20px; height: 20px; margin-right: 10px; display: flex; align-items: center; justify-content: center; }
-    .day-icon svg { stroke: white; }
+    .day-icon svg { stroke: #ffffff; }
     
     .active-ring svg { animation: ring 4s ease-in-out infinite; }
     
     .active-day-shimmer {
         background: linear-gradient(-90deg, #ffffff 0%, #ffffff 35%, #ffd700 50%, #ffffff 65%, #ffffff 100%);
         background-size: 200% auto;
-        -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text; background-clip: text; color: transparent;
         animation: reverseShimmer 7s linear infinite;
     }
 
-    .time-now {
+    .time-now, .break-now {
         font-weight: bold !important;
-        background: linear-gradient(120deg, #ffffff 40%, rgba(46, 204, 113, 1) 50%, #ffffff 60%);
+        background: linear-gradient(120deg, #ffffff 40%, #2ecc71 50%, #ffffff 60%);
         background-size: 200% auto;
-        -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text; background-clip: text; color: transparent;
         animation: reverseShimmer 7s linear infinite;
     }
 
     .time-past {
         text-decoration: line-through;
-        opacity: 0.5;
+        opacity: 0.4;
+        color: #ffffff !important;
     }
 
     @keyframes ring {
@@ -77,9 +78,10 @@
 
     .session { padding: 12px 15px; }
     .break { padding: 8px 15px; background: #080808; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; font-size: 0.65rem; color: var(--break-text); text-transform: uppercase; letter-spacing: 1px; }
-    .time { font-size: 0.7rem; color: var(--secondary); font-family: monospace; display: block; margin-bottom: 2px; }
-    .name { font-size: 0.85rem; font-weight: 400; color: #e0e0e0; }
-    .room { color: var(--secondary); font-size: 0.8rem; margin-left: 4px; }
+    
+    .time { font-size: 0.7rem; color: #ffffff; font-family: monospace; display: block; margin-bottom: 2px; }
+    .name { font-size: 0.85rem; font-weight: 400; color: #ffffff; }
+    .room { color: #aaaaaa; font-size: 0.8rem; margin-left: 4px; }
 
     .footer-signature {
         position: fixed; bottom: 15px; right: 15px; display: flex; align-items: center; gap: 4px;
@@ -91,7 +93,7 @@
         display: flex; align-items: center; gap: 6px;
         background: linear-gradient(-90deg, #ffffff 0%, #ffffff 35%, #ffd700 50%, #ffffff 65%, #ffffff 100%);
         background-size: 200% auto;
-        -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text; background-clip: text; color: transparent;
         animation: reverseShimmer 7s linear infinite;
     }
 
@@ -102,14 +104,14 @@
         letter-spacing: 2px;
         padding: 40px 20px;
         text-transform: uppercase;
-        background: linear-gradient(120deg, rgba(255,255,255,1) 40%, rgba(138,43,226,0.5) 50%, rgba(255,255,255,1) 60%);
+        background: linear-gradient(120deg, #ffffff 40%, rgba(138,43,226,0.6) 50%, #ffffff 60%);
         background-size: 200% auto;
-        -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text; background-clip: text; color: transparent;
         animation: reverseShimmer 7s linear infinite;
     }
 
-    .sig-label { font-size: 0.6rem; font-weight: 400; }
-    .sig-name { font-size: 0.7rem; font-weight: 600; }
+    .sig-label { font-size: 0.6rem; font-weight: 400; color: #ffffff; }
+    .sig-name { font-size: 0.7rem; font-weight: 600; color: #ffffff; }
     .ig-icon { width: 14px; height: 14px; fill: white; }
     .v-icon { fill: var(--verified-blue) !important; width: 12px; height: 12px; }
 </style>
@@ -133,53 +135,53 @@
     <div class="day-block" id="day-1">
         <div class="day-header"><div class="day-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>PAZARTESİ</div>
         <div class="session" data-start="17:00" data-end="17:45"><span class="time">17:00 - 17:45</span><span class="name">Türk Düşünce Tarihi <span class="room">(304/B)</span></span></div>
-        <div class="break">15 DK ARA</div>
+        <div class="break" data-start="17:45" data-end="18:00">15 DK ARA</div>
         <div class="session" data-start="18:00" data-end="18:45"><span class="time">18:00 - 18:45</span><span class="name">Türk Düşünce Tarihi <span class="room">(304/B)</span></span></div>
     </div>
 
     <div class="day-block" id="day-2">
         <div class="day-header"><div class="day-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>SALI</div>
         <div class="session" data-start="17:00" data-end="17:45"><span class="time">17:00 - 17:45</span><span class="name">Tasavvuf Metinleri <span class="room">(301/A)</span></span></div>
-        <div class="break">15 DK ARA</div>
+        <div class="break" data-start="17:45" data-end="18:00">15 DK ARA</div>
         <div class="session" data-start="18:00" data-end="18:45"><span class="time">18:00 - 18:45</span><span class="name">Tasavvuf Metinleri <span class="room">(301/A)</span></span></div>
-        <div class="break">15 DK ARA</div>
+        <div class="break" data-start="18:45" data-end="19:00">15 DK ARA</div>
         <div class="session" data-start="19:00" data-end="19:45"><span class="time">19:00 - 19:45</span><span class="name">Tasavvuf II <span class="room">(301/A)</span></span></div>
-        <div class="break">15 DK ARA</div>
+        <div class="break" data-start="19:45" data-end="20:00">15 DK ARA</div>
         <div class="session" data-start="20:00" data-end="20:45"><span class="time">20:00 - 20:45</span><span class="name">Tasavvuf II <span class="room">(301/A)</span></span></div>
     </div>
 
     <div class="day-block" id="day-3">
         <div class="day-header"><div class="day-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>ÇARŞAMBA</div>
         <div class="session" data-start="19:00" data-end="19:45"><span class="time">19:00 - 19:45</span><span class="name">Osmanlı Türkçesi <span class="room">(301/A)</span></span></div>
-        <div class="break">15 DK ARA</div>
+        <div class="break" data-start="19:45" data-end="20:00">15 DK ARA</div>
         <div class="session" data-start="20:00" data-end="20:45"><span class="time">20:00 - 20:45</span><span class="name">Osmanlı Türkçesi <span class="room">(301/A)</span></span></div>
-        <div class="break">15 DK ARA</div>
+        <div class="break" data-start="20:45" data-end="21:00">15 DK ARA</div>
         <div class="session" data-start="21:00" data-end="21:45"><span class="time">21:00 - 21:45</span><span class="name">Sistematik Kelam <span class="room">(301/A)</span></span></div>
-        <div class="break">15 DK ARA</div>
+        <div class="break" data-start="21:45" data-end="22:00">15 DK ARA</div>
         <div class="session" data-start="22:00" data-end="22:45"><span class="time">22:00 - 22:45</span><span class="name">Sistematik Kelam <span class="room">(301/A)</span></span></div>
     </div>
 
     <div class="day-block" id="day-4">
         <div class="day-header"><div class="day-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>PERŞEMBE</div>
         <div class="session" data-start="17:00" data-end="17:45"><span class="time">17:00 - 17:45</span><span class="name">Mantık Yanlışları <span class="room">(301/A)</span></span></div>
-        <div class="break">15 DK ARA</div>
+        <div class="break" data-start="17:45" data-end="18:00">15 DK ARA</div>
         <div class="session" data-start="18:00" data-end="18:45"><span class="time">18:00 - 18:45</span><span class="name">Mantık Yanlışları <span class="room">(301/A)</span></span></div>
-        <div class="break">15 DK ARA</div>
+        <div class="break" data-start="18:45" data-end="19:00">15 DK ARA</div>
         <div class="session" data-start="19:00" data-end="19:45"><span class="time">19:00 - 19:45</span><span class="name">Eğitimde Ölçme & Değerlendirme <span class="room">(301/A)</span></span></div>
-        <div class="break">15 DK ARA</div>
+        <div class="break" data-start="19:45" data-end="20:00">15 DK ARA</div>
         <div class="session" data-start="20:00" data-end="20:45"><span class="time">20:00 - 20:45</span><span class="name">Eğitimde Ölçme & Değerlendirme <span class="room">(301/A)</span></span></div>
-        <div class="break">15 DK ARA</div>
+        <div class="break" data-start="20:45" data-end="21:00">15 DK ARA</div>
         <div class="session" data-start="21:00" data-end="21:45"><span class="time">21:00 - 21:45</span><span class="name">Eğitimde Ölçme & Değerlendirme <span class="room">(301/A)</span></span></div>
     </div>
 
     <div class="day-block" id="day-5">
         <div class="day-header"><div class="day-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>CUMA</div>
         <div class="session" data-start="17:00" data-end="17:45"><span class="time">17:00 - 17:45</span><span class="name">Dinler Tarihi II <span class="room">(301/A)</span></span></div>
-        <div class="break">15 DK ARA</div>
+        <div class="break" data-start="17:45" data-end="18:00">15 DK ARA</div>
         <div class="session" data-start="18:00" data-end="18:45"><span class="time">18:00 - 18:45</span><span class="name">Dinler Tarihi II <span class="room">(301/A)</span></span></div>
-        <div class="break">15 DK ARA</div>
+        <div class="break" data-start="18:45" data-end="19:00">15 DK ARA</div>
         <div class="session" data-start="19:00" data-end="19:45"><span class="time">19:00 - 19:45</span><span class="name">Kur'an Okuma ve Tecvid VI <span class="room">(301/A)</span></span></div>
-        <div class="break">15 DK ARA</div>
+        <div class="break" data-start="19:45" data-end="20:00">15 DK ARA</div>
         <div class="session" data-start="20:00" data-end="20:45"><span class="time">20:00 - 20:45</span><span class="name">Kur'an Okuma ve Tecvid VI <span class="room">(301/A)</span></span></div>
     </div>
 
@@ -201,20 +203,19 @@
         const currentDay = now.getDay();
         const currentTime = now.getHours() * 60 + now.getMinutes();
         
-        // Temizleme
         document.querySelectorAll('.time').forEach(t => t.classList.remove('time-now', 'time-past'));
         document.querySelectorAll('.name').forEach(n => n.classList.remove('time-now', 'time-past'));
+        document.querySelectorAll('.break').forEach(b => b.classList.remove('break-now')); // Araları temizle
         document.querySelectorAll('.day-header').forEach(h => h.classList.remove('active-day-shimmer'));
         document.querySelectorAll('.day-icon').forEach(i => i.classList.remove('active-ring'));
         
         if(currentDay >= 1 && currentDay <= 5) {
             const todayBlock = document.getElementById('day-' + currentDay);
             if(todayBlock) {
-                const header = todayBlock.querySelector('.day-header');
-                const icon = todayBlock.querySelector('.day-icon');
-                header.classList.add('active-day-shimmer');
-                icon.classList.add('active-ring');
+                todayBlock.querySelector('.day-header').classList.add('active-day-shimmer');
+                todayBlock.querySelector('.day-icon').classList.add('active-ring');
 
+                // Dersleri Kontrol Et
                 const sessions = todayBlock.querySelectorAll('.session');
                 sessions.forEach(session => {
                     const startStr = session.getAttribute('data-start').split(':');
@@ -227,10 +228,23 @@
 
                     if (currentTime >= startTime && currentTime <= endTime) {
                         timeSpan.classList.add('time-now');
-                        nameSpan.classList.add('time-now'); // Ders ismi de artık parlayacak
+                        nameSpan.classList.add('time-now');
                     } else if (currentTime > endTime) {
                         timeSpan.classList.add('time-past');
                         nameSpan.classList.add('time-past');
+                    }
+                });
+
+                // Araları Kontrol Et
+                const breaks = todayBlock.querySelectorAll('.break');
+                breaks.forEach(brk => {
+                    const startStr = brk.getAttribute('data-start').split(':');
+                    const endStr = brk.getAttribute('data-end').split(':');
+                    const startTime = parseInt(startStr[0]) * 60 + parseInt(startStr[1]);
+                    const endTime = parseInt(endStr[0]) * 60 + parseInt(endStr[1]);
+
+                    if (currentTime >= startTime && currentTime <= endTime) {
+                        brk.classList.add('break-now');
                     }
                 });
             }
