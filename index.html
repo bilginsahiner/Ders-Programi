@@ -202,10 +202,28 @@
 </div>
 
 <script>
+    let notifiedStarts = new Set();
+    let notifiedEnds = new Set();
+
+    function askPermission() {
+        if ("Notification" in window && Notification.permission === "default") {
+            Notification.requestPermission();
+        }
+    }
+
+    function sendNotify(title, body) {
+        if ("Notification" in window && Notification.permission === "granted") {
+            new Notification(title, { body: body, icon: 'ikon.png' });
+        }
+    }
+
     function updateLiveStatus() {
         const now = new Date();
         const currentDay = now.getDay();
-        const currentTime = now.getHours() * 60 + now.getMinutes();
+        const h = now.getHours().toString().padStart(2, '0');
+        const m = now.getMinutes().toString().padStart(2, '0');
+        const currentTimeStr = h + ":" + m;
+        const currentTimeVal = now.getHours() * 60 + now.getMinutes();
         
         document.querySelectorAll('.time, .name').forEach(el => {
             el.classList.remove('time-now', 'time-past');
@@ -220,29 +238,52 @@
                 todayBlock.querySelector('.day-icon').classList.add('active-ring');
 
                 todayBlock.querySelectorAll('.session').forEach(item => {
-                    const startStr = item.getAttribute('data-start').split(':');
-                    const endStr = item.getAttribute('data-end').split(':');
-                    const startTime = parseInt(startStr[0]) * 60 + parseInt(startStr[1]);
-                    const endTime = parseInt(endStr[0]) * 60 + parseInt(endStr[1]);
+                    const startStr = item.getAttribute('data-start');
+                    const endStr = item.getAttribute('data-end');
+                    const startParts = startStr.split(':');
+                    const endParts = endStr.split(':');
+                    const startTime = parseInt(startParts[0]) * 60 + parseInt(startParts[1]);
+                    const endTime = parseInt(endParts[0]) * 60 + parseInt(endParts[1]);
 
                     const t = item.querySelector('.time');
-                    const n = item.querySelector('.name');
+                    const n = item.querySelector('.name').innerText;
 
-                    if (currentTime >= startTime && currentTime <= endTime) {
-                        t.classList.add('time-now'); n.classList.add('time-now');
-                    } else if (currentTime > endTime) {
-                        t.classList.add('time-past'); n.classList.add('time-past');
+                    // Başlangıç Bildirimi
+                    if (currentTimeStr === startStr && !notifiedStarts.has(startStr + n)) {
+                        sendNotify("Ders Başladı 🔔", n + " dersi başladı, başarılar!");
+                        notifiedStarts.add(startStr + n);
+                    }
+
+                    // Bitiş Bildirimi
+                    if (currentTimeStr === endStr && !notifiedEnds.has(endStr + n)) {
+                        sendNotify("Ders Bitti ✅", n + " dersi bitti, iyi dinlenmeler.");
+                        notifiedEnds.add(endStr + n);
+                    }
+
+                    if (currentTimeVal >= startTime && currentTimeVal <= endTime) {
+                        t.classList.add('time-now'); 
+                        item.querySelector('.name').classList.add('time-now');
+                    } else if (currentTimeVal > endTime) {
+                        t.classList.add('time-past'); 
+                        item.querySelector('.name').classList.add('time-past');
                     }
                 });
             }
         }
     }
-    setInterval(updateLiveStatus, 10000);
-    window.onload = updateLiveStatus;
+
+    // Uygulama açıldığında izin iste ve ekran tıklamasıyla garantiye al
+    window.onload = () => {
+        updateLiveStatus();
+        setTimeout(askPermission, 2000);
+    };
+    document.addEventListener('click', askPermission, { once: true });
+
+    setInterval(updateLiveStatus, 15000); // 15 saniyede bir kontrol
 
     if ('serviceWorker' in navigator) {
         const swCode = `
-            const CACHE_NAME = 'ders-programi-v5';
+            const CACHE_NAME = 'ders-programi-v6';
             const ASSETS = [window.location.href];
             self.addEventListener('install', (e) => {
                 e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(ASSETS)));
