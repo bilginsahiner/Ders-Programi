@@ -167,13 +167,17 @@
 
     <div class="day-block" id="day-4">
         <div class="day-header"><div class="day-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>PERŞEMBE</div>
-        <div class="session" data-start="17:00" data-end="17:45"><span class="time">17:00 - 17:45</span><span class="name">Mantık Yanlışları <span class="room">(301/B)</span></span></div>
+        <div class="session" data-start="17:00" data-end="17:45"><span class="time">17:00 - 17:45</span><span class="name">Dinler Tarihi-II <span class="room">(304/A)</span></span></div>
         <div class="break">15 DK ARA</div>
-        <div class="session" data-start="18:00" data-end="18:45"><span class="time">18:00 - 18:45</span><span class="name">Mantık Yanlışları <span class="room">(301/B)</span></span></div>
+        <div class="session" data-start="18:00" data-end="18:45"><span class="time">18:00 - 18:45</span><span class="name">Dinler Tarihi-II <span class="room">(304/A)</span></span></div>
         <div class="break">15 DK ARA</div>
-        <div class="session" data-start="19:00" data-end="19:45"><span class="time">19:00 - 19:45</span><span class="name">Dinler Tarihi-II <span class="room">(304/A)</span></span></div>
+        <div class="session" data-start="19:00" data-end="19:45"><span class="time">19:00 - 19:45</span><span class="name">Mantık Yanlışları <span class="room">(301/B)</span></span></div>
         <div class="break">15 DK ARA</div>
-        <div class="session" data-start="20:00" data-end="20:45"><span class="time">20:00 - 20:45</span><span class="name">Dinler Tarihi-II <span class="room">(304/A)</span></span></div>
+        <div class="session" data-start="20:00" data-end="20:45"><span class="time">20:00 - 20:45</span><span class="name">Mantık Yanlışları <span class="room">(301/B)</span></span></div>
+        <div class="break">15 DK ARA</div>
+        <div class="session" data-start="21:00" data-end="21:45"><span class="time">21:00 - 21:45</span><span class="name">Kur'an Okuma ve Tecvid-VI <span class="room">(304/A)</span></span></div>
+        <div class="break">15 DK ARA</div>
+        <div class="session" data-start="22:00" data-end="22:45"><span class="time">22:00 - 22:45</span><span class="name">Kur'an Okuma ve Tecvid-VI <span class="room">(304/A)</span></span></div>
     </div>
 
     <div class="day-block" id="day-5">
@@ -183,10 +187,6 @@
         <div class="session" data-start="17:00" data-end="17:45"><span class="time">17:00 - 17:45</span><span class="name">Eğitimde Ölçme & Değerlendirme <span class="room">(304/A)</span></span></div>
         <div class="break">15 DK ARA</div>
         <div class="session" data-start="18:00" data-end="18:45"><span class="time">18:00 - 18:45</span><span class="name">Eğitimde Ölçme & Değerlendirme <span class="room">(304/A)</span></span></div>
-        <div class="break">15 DK ARA</div>
-        <div class="session" data-start="19:00" data-end="19:45"><span class="time">19:00 - 19:45</span><span class="name">Kur'an Okuma ve Tecvid-VI <span class="room">(304/A)</span></span></div>
-        <div class="break">15 DK ARA</div>
-        <div class="session" data-start="20:00" data-end="20:45"><span class="time">20:00 - 20:45</span><span class="name">Kur'an Okuma ve Tecvid-VI <span class="room">(304/A)</span></span></div>
     </div>
 
     <div class="ghost-purple-shimmer">2026 Güncel Ders Programı</div>
@@ -248,13 +248,11 @@
                     const t = item.querySelector('.time');
                     const n = item.querySelector('.name').innerText;
 
-                    // Başlangıç Bildirimi
                     if (currentTimeStr === startStr && !notifiedStarts.has(startStr + n)) {
                         sendNotify("Ders Başladı 🔔", n + " dersi başladı, başarılar!");
                         notifiedStarts.add(startStr + n);
                     }
 
-                    // Bitiş Bildirimi
                     if (currentTimeStr === endStr && !notifiedEnds.has(endStr + n)) {
                         sendNotify("Ders Bitti ✅", n + " dersi bitti, iyi dinlenmeler.");
                         notifiedEnds.add(endStr + n);
@@ -272,18 +270,16 @@
         }
     }
 
-    // Uygulama açıldığında izin iste ve ekran tıklamasıyla garantiye al
     window.onload = () => {
         updateLiveStatus();
         setTimeout(askPermission, 2000);
     };
     document.addEventListener('click', askPermission, { once: true });
-
-    setInterval(updateLiveStatus, 15000); // 15 saniyede bir kontrol
+    setInterval(updateLiveStatus, 15000);
 
     if ('serviceWorker' in navigator) {
         const swCode = `
-            const CACHE_NAME = 'ders-programi-v6';
+            const CACHE_NAME = 'ders-programi-v11';
             const ASSETS = [window.location.href];
             self.addEventListener('install', (e) => {
                 e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(ASSETS)));
