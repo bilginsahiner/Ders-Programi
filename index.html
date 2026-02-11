@@ -188,6 +188,7 @@
 <script>
     let notifiedStarts = new Set();
     let notifiedEnds = new Set();
+    let hasAutoScrolled = false;
 
     function askPermission() {
         if ("Notification" in window && Notification.permission === "default") {
@@ -233,12 +234,11 @@
                     const n = item.querySelector('.name').innerText;
 
                     if (currentTimeStr === startStr && !notifiedStarts.has(startStr + n)) {
-                        sendNotify("Ders Başladı 🔔", n + " dersi başladı, başarılar!");
+                        sendNotify("Ders Başladı 🔔", n + " dersi başladı!");
                         notifiedStarts.add(startStr + n);
                     }
-
                     if (currentTimeStr === endStr && !notifiedEnds.has(endStr + n)) {
-                        sendNotify("Ders Bitti ✅", n + " dersi bitti, iyi dinlenmeler.");
+                        sendNotify("Ders Bitti ✅", n + " dersi bitti.");
                         notifiedEnds.add(endStr + n);
                     }
 
@@ -250,6 +250,19 @@
                         item.querySelector('.name').classList.add('time-past');
                     }
                 });
+
+                // HASSAS KAYDIRMA: Tablo yapısını bozmaz, sadece duracağı yeri belirler
+                if (!hasAutoScrolled) {
+                    const offset = 15; // Burayı 10, 15 veya 20 yaparak göz zevkine göre ince ayar yapabilirsin
+                    const elementPosition = todayBlock.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                    hasAutoScrolled = true; 
+                }
             }
         }
     }
@@ -258,6 +271,7 @@
         updateLiveStatus();
         setTimeout(askPermission, 2000);
     };
+    
     document.addEventListener('click', askPermission, { once: true });
     setInterval(updateLiveStatus, 15000);
 
