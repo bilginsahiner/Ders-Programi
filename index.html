@@ -166,11 +166,7 @@
 
     <div class="day-block" id="day-5">
         <div class="day-header"><div class="day-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>CUMA</div>
-        <div class="session" data-start="16:00" data-end="16:45"><span class="time">16:00 - 16:45</span><span class="name">Eğitimde Ölçme & Değerlendirme <span class="room">(304/A)</span></span></div>
-        <div class="break">15 DK ARA</div>
-        <div class="session" data-start="17:00" data-end="17:45"><span class="time">17:00 - 17:45</span><span class="name">Eğitimde Ölçme & Değerlendirme <span class="room">(304/A)</span></span></div>
-        <div class="break">15 DK ARA</div>
-        <div class="session" data-start="18:00" data-end="18:45"><span class="time">18:00 - 18:45</span><span class="name">Eğitimde Ölçme & Değerlendirme <span class="room">(304/A)</span></span></div>
+        <div class="session" data-start="16:00" data-end="18:00"><span class="time">16:00 - 18:00</span><span class="name">Eğitimde Ölçme & Değerlendirme <span class="room">(304/A)</span></span></div>
     </div>
 
     <div class="ghost-purple-shimmer">2026 Güncel Ders Programı</div>
@@ -251,9 +247,8 @@
                     }
                 });
 
-                // HASSAS KAYDIRMA: Tablo yapısını bozmaz, sadece duracağı yeri belirler
                 if (!hasAutoScrolled) {
-                    const offset = 15; // Burayı 10, 15 veya 20 yaparak göz zevkine göre ince ayar yapabilirsin
+                    const offset = 15; 
                     const elementPosition = todayBlock.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.pageYOffset - offset;
 
