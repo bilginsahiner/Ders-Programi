@@ -272,6 +272,27 @@
 </div>
 
 <script>
+    // Otomatik Yönlendirme Mantığı (18 Şubat - 19 Mart)
+    function checkRamadanRedirect() {
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        
+        // Başlangıç: 18 Şubat 00:00
+        const startDate = new Date(currentYear, 1, 18); // Ay indeksi 0'dan başlar (1 = Şubat)
+        // Bitiş: 19 Mart 23:59:59
+        const endDate = new Date(currentYear, 2, 19, 23, 59, 59); // 2 = Mart
+
+        if (now >= startDate && now <= endDate) {
+            // Eğer hedef sayfada değilsek yönlendir
+            if (!window.location.href.includes("Ramazan-Programi")) {
+                window.location.href = "https://bilginsahiner.github.io/Ramazan-Programi/";
+            }
+        }
+    }
+
+    // Sayfa yüklendiğinde kontrol et
+    checkRamadanRedirect();
+
     function toggleMenu() {
         const drawer = document.getElementById('drawer');
         const overlay = document.getElementById('overlay');
