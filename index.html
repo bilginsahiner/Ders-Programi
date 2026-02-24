@@ -27,15 +27,15 @@
     body { 
         font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         background-color: var(--bg); color: var(--accent);
-        margin: 0; padding: 10px; display: flex; flex-direction: column; align-items: center;
+        margin: 0; padding: 0 10px 10px 10px; display: flex; flex-direction: column; align-items: center;
         min-height: 100vh;
     }
 
     /* --- MENU STYLES --- */
     .menu-btn {
-        position: fixed; top: 20px; left: 20px; z-index: 1001;
-        background: var(--card); border: 1px solid var(--border);
-        border-radius: 8px; padding: 8px; cursor: pointer;
+        position: absolute; left: 15px; z-index: 1001;
+        background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border);
+        border-radius: 8px; padding: 6px; cursor: pointer;
         display: flex; align-items: center; justify-content: center;
     }
     
@@ -69,7 +69,6 @@
     .menu-item:hover { background: var(--highlight); border-color: var(--border); }
     .menu-item svg { width: 20px; height: 20px; stroke: var(--accent); }
 
-    /* AKTİF SAYFA (Ders Programı) RENKLİ */
     .ders-link-special {
         background: linear-gradient(45deg, #1a1a1a, #2c1e4a);
         border: 1px solid #4b307d !important;
@@ -82,8 +81,15 @@
 
     /* --- CONTENT STYLES --- */
     .container { width: 100%; max-width: 400px; box-sizing: border-box; padding-bottom: 80px; }
-    header { padding: 25px 0; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
-    h1 { font-size: 0.9rem; font-weight: 300; letter-spacing: 5px; margin: 0; text-transform: uppercase; text-align: center; }
+    
+    header { 
+        position: sticky; top: 0; z-index: 1000;
+        background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        padding: 20px 0; border-bottom: 1px solid var(--border); margin-bottom: 20px;
+        width: 100%; display: flex; align-items: center; justify-content: center;
+    }
+
+    h1 { font-size: 0.85rem; font-weight: 300; letter-spacing: 4px; margin: 0; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
     
     .day-block { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 15px; overflow: hidden; }
     .day-header { 
@@ -174,14 +180,6 @@
 </head>
 <body>
 
-<div class="menu-btn" onclick="toggleMenu()">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
-        <line x1="3" y1="12" x2="21" y2="12"></line>
-        <line x1="3" y1="6" x2="21" y2="6"></line>
-        <line x1="3" y1="18" x2="21" y2="18"></line>
-    </svg>
-</div>
-
 <div class="drawer-overlay" id="overlay" onclick="toggleMenu()"></div>
 
 <div class="side-drawer" id="drawer">
@@ -202,38 +200,44 @@
         Vize Takvimi
     </a>
 
-<a href="https://bilginsahiner.github.io/Final-Takvimi/" class="menu-item plain-link">
-    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M9 11l3 3L22 4"></path>
-        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
-    </svg>
-    Final Takvimi
-</a>
+    <a href="https://bilginsahiner.github.io/Final-Takvimi/" class="menu-item plain-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 11l3 3L22 4"></path>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+        </svg>
+        Final Takvimi
+    </a>
 
-<a href="https://bilginsahiner.github.io/Tasavvuf-Metinleri/" class="menu-item plain-link">
-    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-    </svg>
-    Tasavvuf Metinleri
-</a>
-
+    <a href="https://bilginsahiner.github.io/Tasavvuf-Metinleri/" class="menu-item plain-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+        </svg>
+        Tasavvuf Metinleri
+    </a>
 </div>
 
-<div class="container">
-    <header>
-        <h1 style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="3" y="5" width="18" height="16" rx="3" stroke="white" stroke-width="1.5" fill="white" fill-opacity="0.1"/>
-                <path d="M3 10H21" stroke="white" stroke-width="1.5"/>
-                <path d="M8 3V7" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-                <path d="M16 3V7" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-                <circle cx="12" cy="15" r="2" stroke="white" stroke-width="1.5"/>
-            </svg>
-            DERS PROGRAMI
-        </h1>
-    </header>
+<header>
+    <div class="menu-btn" onclick="toggleMenu()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </div>
+    <h1>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="5" width="18" height="16" rx="3" stroke="white" stroke-width="1.5" fill="white" fill-opacity="0.1"/>
+            <path d="M3 10H21" stroke="white" stroke-width="1.5"/>
+            <path d="M8 3V7" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M16 3V7" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="12" cy="15" r="2" stroke="white" stroke-width="1.5"/>
+        </svg>
+        DERS PROGRAMI
+    </h1>
+</header>
 
+<div class="container">
     <div class="day-block" id="day-1">
         <div class="day-header"><div class="day-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>PAZARTESİ</div>
         <div class="session" data-start="17:00" data-end="18:15"><span class="time">17:00 - 18:15</span><span class="name">Türk Düşünce Tarihi <span class="room">(304/A)</span></span></div>
@@ -280,25 +284,17 @@
 </div>
 
 <script>
-    // Otomatik Yönlendirme Mantığı (18 Şubat - 19 Mart)
     function checkRamadanRedirect() {
         const now = new Date();
         const currentYear = now.getFullYear();
-        
-        // Başlangıç: 18 Şubat 00:00
-        const startDate = new Date(currentYear, 1, 18); // Ay indeksi 0'dan başlar (1 = Şubat)
-        // Bitiş: 19 Mart 23:59:59
-        const endDate = new Date(currentYear, 2, 19, 23, 59, 59); // 2 = Mart
-
+        const startDate = new Date(currentYear, 1, 18);
+        const endDate = new Date(currentYear, 2, 19, 23, 59, 59);
         if (now >= startDate && now <= endDate) {
-            // Eğer hedef sayfada değilsek yönlendir
             if (!window.location.href.includes("Ramazan-Programi")) {
                 window.location.href = "https://bilginsahiner.github.io/Ramazan-Programi/";
             }
         }
     }
-
-    // Sayfa yüklendiğinde kontrol et
     checkRamadanRedirect();
 
     function toggleMenu() {
@@ -351,7 +347,6 @@
                     const endParts = endStr.split(':');
                     const startTime = parseInt(startParts[0]) * 60 + parseInt(startParts[1]);
                     const endTime = parseInt(endParts[0]) * 60 + parseInt(endParts[1]);
-
                     const t = item.querySelector('.time');
                     const n = item.querySelector('.name').innerText;
 
@@ -374,9 +369,9 @@
                 });
 
                 if (!hasAutoScrolled) {
-                    const offset = 15; 
+                    const headerHeight = document.querySelector('header').offsetHeight;
                     const elementPosition = todayBlock.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerHeight - 15;
                     window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
                     hasAutoScrolled = true; 
                 }
@@ -388,7 +383,6 @@
         updateLiveStatus();
         setTimeout(askPermission, 2000);
     };
-    
     document.addEventListener('click', askPermission, { once: true });
     setInterval(updateLiveStatus, 15000);
 </script>
