@@ -28,6 +28,13 @@
         --table-glow: rgba(98, 70, 234, 0.15);
         --table-border-soft: rgba(98, 70, 234, 0.4);
     }
+
+    /* Tıklama sonrası oluşan mavi efektleri ve çerçeveleri kaldırmak için global ayar */
+    * {
+        -webkit-tap-highlight-color: transparent;
+        outline: none !important;
+    }
+
     body { 
         font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         background-color: var(--bg); color: var(--accent);
